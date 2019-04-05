@@ -14,3 +14,11 @@ jobs:
           echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
           docker build -t vlandemaineorange/circleci-testing:latest .
           docker push vlandemaineorange/circleci-testing:latest
+    - stage: test
+      script: |
+          export CONTAINER_TEST_ID=`docker run -d vlandemaineorange/circleci-testing:latest` && echo $CONTAINER_TEST_ID
+          echo $CONTAINER_TEST_ID && export CONTAINER_IP=`docker inspect --format "{{ .NetworkSettings.IPAddress }}" $CONTAINER_TEST_ID` && echo $CONTAINER_IP
+          docker logs $CONTAINER_TEST_ID
+          sleep 5
+          docker ps
+          sh -c '[ $(curl --insecure -o -I -L -s -w "%{http_code}" http://$CONTAINER_IP:5000/) -eq 200 ]'
