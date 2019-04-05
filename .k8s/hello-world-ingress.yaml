@@ -11,6 +11,6 @@
        http:
          paths:
            - backend:
-               serviceName: hello-world-svc
+               serviceName: hello-world-svc-travis
                servicePort: 5000
              path: /
