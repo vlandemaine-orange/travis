@@ -1,0 +1,16 @@
+ apiVersion: extensions/v1beta1
+ kind: Ingress
+ metadata:
+   annotations:
+     kubernetes.io/ingress.class: traefik
+   name: ingressctrl-hello-world
+   namespace: travis
+ spec:
+   rules:
+     - host: hello-world.travis.ps-vla.madpellzo.org
+       http:
+         paths:
+           - backend:
+               serviceName: hello-world-svc
+               servicePort: 5000
+             path: /
