@@ -2,12 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    app: hello-world-svc
-  name: hello-world-svc
+    app: hello-world-svc-travis
+  name: hello-world-svc-travis
   namespace: travis
 spec:
   selector:
-    app: hello-world
+    app: hello-world-travis
   ports:
   - protocol: TCP
     port: 5000

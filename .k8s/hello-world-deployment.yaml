@@ -1,8 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: hello-world
-  namespace: circleci
+  name: hello-world-travis
+  namespace: travis
 spec:
   replicas: 2
   minReadySeconds: 15
@@ -14,12 +14,12 @@ spec:
   template:
     metadata:
       labels:
-        app: hello-world
+        app: hello-world-travis
     spec:
       containers:
       - image: vlandemaineorange/circleci-testing:latest
         imagePullPolicy: Always
-        name: hello-world
+        name: hello-world-travis
         ports:
           - containerPort: 5000
         livenessProbe:
