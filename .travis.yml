@@ -37,4 +37,4 @@ jobs:
           if [ $(kubectl get pods -n travis | grep hello-world | wc -l ) -gt 1 ]; then kubectl -n travis replace -f  .k8s/hello-world-deployment.yaml; else kubectl apply -n travis -f .k8s/hello-world-deployment.yaml; fi;
           if [ $(kubectl get svc -n travis | grep hello-world | wc -l ) -gt 1 ]; then kubectl -n travis replace -f  .k8s/hello-world-svc.yaml; else kubectl apply -n travis -f .k8s/hello-world-svc.yaml; fi;
           if [ $(kubectl get ingress -n travis | grep hello-world | wc -l ) -gt 1 ]; then kubectl -n travis replace -f  .k8s/hello-world-ingress.yaml; else kubectl apply -n travis -f .k8s/hello-world-ingress.yaml; fi;
-          kubectl patch deployment -n travis hello-world -p '{"spec":{"template":{"spec":{"containers":[{"name":"hello-world","env":[{"name":"RESTART_","value":"'$(date +%s)'"}]}]}}}}'
+          kubectl patch deployment -n travis hello-world -p '{"spec":{"template":{"spec":{"containers":[{"name":"hello-world-test","env":[{"name":"RESTART_","value":"'$(date +%s)'"}]}]}}}}'
