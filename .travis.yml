@@ -22,8 +22,7 @@ jobs:
           docker ps
           sh -c '[ $(curl --insecure -o -I -L -s -w "%{http_code}" http://$CONTAINER_IP:5000/) -eq 200 ]'
     - stage: release
-      on:
-        tags: true
+      if: tag IS present
       script: |
           docker pull vlandemaineorange/circleci-testing:latest
           docker tag vlandemaineorange/circleci-testing:latest vlandemaineorange/circleci-testing:$TRAVIS_TAG
