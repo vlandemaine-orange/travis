@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+language: python
+jobs:
+  include:
+    - stage: build
+      script: docker build -t test .
