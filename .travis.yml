@@ -8,6 +8,7 @@ jobs:
     - stage: build
       script: |
           docker info
+          echo "$DOCKER_USER"
           [ -z "$DOCKER_PASS" ] && echo "Registry Password is not set or empty (or protected) in Secret Variables" && exit 1
           [ -z "$DOCKER_USER" ] && echo "Registry User is not set or empty (or protected) in Secret Variables" && exit 1
           echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
